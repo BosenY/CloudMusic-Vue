@@ -1,6 +1,7 @@
 # vue-swiper
 
-> A vue-swiper component
+> 一个仿h5网易云音乐的vue spa应用，
+支持换皮肤操作
 
 ## Build Setup
 

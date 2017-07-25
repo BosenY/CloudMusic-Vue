@@ -49,7 +49,7 @@ export default {
                 {
                     name: '标准红',
                     method: () => {
-                        console.log(this.data)
+                        // console.log(this.data)
                         this.changeTheme('theme-red')
                     }
                 },
