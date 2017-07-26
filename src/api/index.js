@@ -18,6 +18,6 @@ function checkStatus(response) {
 
 export const getHotList = () => {
     let url = 'http://115.159.64.73:3003/top/list?idx=1'
-    return fetch(url,GET_OPTION).then(checkStatus).then(res => res.json())
+    return fetch(url).then(checkStatus).then(res => res.json())
 
 }
