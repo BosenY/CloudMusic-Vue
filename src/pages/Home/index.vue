@@ -7,9 +7,13 @@
 
 <script>
 import { ByHeader, Tabbar } from '@/components'
+
 export default {
   data() {
     return {
+      result: {},
+
+
     }
   },
   methods: {
@@ -20,7 +24,8 @@ export default {
   components: {
       ByHeader,
       Tabbar
-  }
+  },
+
 }
 </script>
 

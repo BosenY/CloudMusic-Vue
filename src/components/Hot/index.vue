@@ -4,27 +4,25 @@
             <div class="hotopct">
                 <div class="u-hmsprt hoticon"></div>
                 <div class="hottime">
-                    <!-- react-text: 251 -->更新日期：
-                    <!-- /react-text -->
-                    <!-- react-text: 252 -->07月20日
-                    <!-- /react-text -->
+                    更新日期：{{updatedTime}}
+
                 </div>
             </div>
         </div>
         <div class="hotcont">
-            <div class="m-sgitem" v-for="(item, index) in 20" :key="index">
-                <div class="sgfl sgfl-cred" :class="[GET_THEME+'-color']">01</div>
+            <div class="m-sgitem" v-for="(item, index) in tracks" :key="index" @click="Music(item.id)">
+                <div class="sgfl sgfl-cred" :class="[GET_THEME+'-color']">{{index+1 <10?'0':''}}{{index+1}}</div>
                 <div class="sgfr f-bd f-bd-btm">
                     <div class="sgchfl">
                         <div class="f-thide sgtl">
-                            越过山丘
+                            {{item.name}}
                             <span class="sgalia">
-                                (致李宗盛)
+                                {{item.alias.length>0?`(${item.alias[0]})`:''}}
                             </span>
                         </div>
                         <div class="f-thide sginfo">
                             <i class="u-hmsprt sghot"></i>
-                            杨宗纬 - 越过山丘
+                            {{artists(item)}} - {{item.name}}
 
                         </div>
                     </div>
@@ -39,18 +37,48 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { getHotList } from '@/api'
+import moment from 'moment'
 export default {
     name: 'hot',
     data() {
         return {
+            result: {},
+            tracks:[]
         }
     },
     computed: {
         ...mapGetters([
             'GET_THEME'
         ]),
+        updatedTime() {
+            if (this.result && this.result.updateTime) {
+                return moment(this.result.updateTime).format('MM月DD日')
+            }
+        },
+
 
     },
+    methods: {
+        artists(item) {
+            let arr = []
+            item.artists.map(childrenitem =>{
+                arr.push(childrenitem.name)
+            })
+            return arr.join('/')
+        },
+        //跳转听歌的链接
+        Music(id) {
+            window.location.href = `http://music.163.com/m/song?id=${id}`
+        }
+    },
+    mounted() {
+        getHotList().then(res => {
+            this.result = res.result
+            this.tracks = res.result.tracks
+            console.log(this.result)
+        })
+    }
 }
 </script>
 
