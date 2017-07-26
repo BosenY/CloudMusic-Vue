@@ -17,7 +17,7 @@ function checkStatus(response) {
 }
 
 export const getHotList = () => {
-    let url = '/api/playlist/detail?id=3778678'
+    let url = 'http://115.159.64.73:3003/top/list?idx=1'
     return fetch(url,GET_OPTION).then(checkStatus).then(res => res.json())
 
 }
