@@ -6,11 +6,17 @@ import Demo from '@/pages/demo.vue'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/demo',
       name: 'demo',
       component: () => import('@/pages/Home')
+    },
+    {
+      path: '/',
+      name: 'sao',
+      component: () => import('@/pages/Sao')
     }
   ]
 })

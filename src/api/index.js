@@ -21,3 +21,9 @@ export const getHotList = () => {
     return fetch(url).then(checkStatus).then(res => res.json())
 
 }
+
+export const getNewList = () => {
+    let url = 'http://115.159.64.73:3003/top/list?idx=0'
+    return fetch(url).then(checkStatus).then(res => res.json())
+
+}
